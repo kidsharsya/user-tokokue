@@ -28,7 +28,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href="/koleksi" className={linkClasses('/koleksi')}>
+            <Link href="/produk" className={linkClasses('/koleksi')}>
               Produk
             </Link>
           </li>
@@ -57,8 +57,8 @@ export default function Navbar() {
           <Link href="/home" className={pathname === '/home' ? 'block text-[var(--color-gold)] font-semibold' : 'block text-white hover:text-[var(--color-gold)]'} onClick={() => setIsOpen(false)}>
             Home
           </Link>
-          <Link href="/koleksi" className={pathname === '/koleksi' ? 'block text-[var(--color-gold)] font-semibold' : 'block text-white hover:text-[var(--color-gold)]'} onClick={() => setIsOpen(false)}>
-            Koleksi
+          <Link href="/produk" className={pathname === '/koleksi' ? 'block text-[var(--color-gold)] font-semibold' : 'block text-white hover:text-[var(--color-gold)]'} onClick={() => setIsOpen(false)}>
+            Produk
           </Link>
           <Link href="/kontak-kami" className={pathname === '/kontak-kami' ? 'block text-[var(--color-gold)] font-semibold' : 'block text-white hover:text-[var(--color-gold)]'} onClick={() => setIsOpen(false)}>
             Kontak Kami

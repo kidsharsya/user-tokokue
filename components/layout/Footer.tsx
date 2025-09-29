@@ -38,7 +38,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/koleksi" className="hover:text-white">
+                <a href="/produk" className="hover:text-white">
                   Produk
                 </a>
               </li>
