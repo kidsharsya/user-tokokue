@@ -17,6 +17,7 @@ interface GalleryProps {
 
 export default function ProductGallery({ images }: GalleryProps) {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5000';
+  const baseStaticUrl = baseUrl.replace('/api', '');
 
   const imgs = images ?? [];
   const [current, setCurrent] = useState(0);
@@ -41,7 +42,7 @@ export default function ProductGallery({ images }: GalleryProps) {
     <div className="relative w-full">
       {/* Main image */}
       <div className="rounded-lg overflow-hidden shadow-md">
-        <Image src={`${baseUrl}${imgs[current].imageUrl}`} alt={`Product image ${imgs[current].id}`} width={600} height={400} className="w-full h-[350px] object-cover" />
+        <Image src={`${baseStaticUrl}${imgs[current].imageUrl}`} alt={`Product image ${imgs[current].id}`} width={600} height={400} className="w-full h-[350px] object-cover" />
       </div>
 
       {/* Prev / Next buttons */}

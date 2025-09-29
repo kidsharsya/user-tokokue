@@ -21,7 +21,7 @@ const collections = [
   },
 ];
 
-export default function KoleksiSection() {
+export default function ProdukSection() {
   return (
     <section className="bg-[var(--color-grey)] py-16">
       <div className="max-w-6xl mx-auto px-6 text-center">

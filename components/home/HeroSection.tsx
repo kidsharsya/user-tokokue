@@ -23,8 +23,8 @@ export default function HeroSection() {
         </h1>
         <p className="mt-4 text-lg md:text-xl text-gray-200">Diracik secara eksklusif menggunakan bahan-bahan premium pilihan</p>
         <div className="mt-6">
-          <a href="/koleksi" className="inline-block px-6 py-3 rounded-md font-medium text-white bg-[var(--color-gold)] hover:bg-[var(--color-grey)] transition">
-            Jelajahi Koleksi
+          <a href="/produk" className="inline-block px-6 py-3 rounded-md font-medium text-white bg-[var(--color-gold)] hover:bg-[var(--color-grey)] transition">
+            Jelajahi Produk
           </a>
         </div>
       </div>

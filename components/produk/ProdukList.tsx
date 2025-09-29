@@ -33,7 +33,7 @@ export default function ProductList({ products }: ProductListProps) {
         return (
           <div key={product.id} className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
             {/* Link ke detail produk */}
-            <Link href={`/koleksi/${product.slug}`} className="flex-grow flex flex-col">
+            <Link href={`/produk/${product.slug}`} className="flex-grow flex flex-col">
               {/* Gambar Produk */}
               <div className="relative w-full h-56 overflow-hidden">
                 <Image src={imageUrl} alt={product.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />

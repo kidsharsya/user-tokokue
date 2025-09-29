@@ -21,7 +21,7 @@ interface Product {
   categoryId: string;
 }
 
-export default function KoleksiPage() {
+export default function ProdukPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [searchQuery, setSearchQuery] = useState('');

@@ -1,4 +1,4 @@
-// app/koleksi/[slug]/page.tsx
+// app/produk/[slug]/page.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
