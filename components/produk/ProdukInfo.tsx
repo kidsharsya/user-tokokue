@@ -1,17 +1,8 @@
 // components/ProductInfo.tsx
 'use client';
 
-import { ShoppingCart } from 'lucide-react';
 import AddToCartButton from './AddToCartButton';
-
-interface Product {
-  id: string;
-  name: string;
-  description: string;
-  price: string;
-  isAvailable: boolean;
-  category: { name: string };
-}
+import { Product } from '@/types/product';
 
 export default function ProductInfo({ product }: { product: Product }) {
   return (
@@ -28,7 +19,7 @@ export default function ProductInfo({ product }: { product: Product }) {
         <p className={`mt-1 text-sm ${product.isAvailable ? 'text-green-600' : 'text-red-500'}`}>{product.isAvailable ? 'Tersedia' : 'Stok Habis'}</p>
       </div>
 
-      <AddToCartButton />
+      <AddToCartButton product={product} />
     </div>
   );
 }

@@ -3,13 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-
-interface ProductImage {
-  id: string;
-  productId?: string;
-  imageUrl: string;
-  isThumbnail: boolean;
-}
+import { ProductImage } from '@/types/product';
 
 interface GalleryProps {
   images: ProductImage[];

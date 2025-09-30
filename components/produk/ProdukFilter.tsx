@@ -2,12 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Search } from 'lucide-react';
-
-interface Category {
-  id: string;
-  name: string;
-  slug: string;
-}
+import { Category } from '@/types/category';
 
 interface ProductFiltersProps {
   onSearch: (value: string) => void;

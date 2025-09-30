@@ -3,23 +3,8 @@
 import { useEffect, useState } from 'react';
 import ProductFilters from '@/components/produk/ProdukFilter';
 import ProductList from '@/components/produk/ProdukList';
-
-interface ProductImage {
-  id: string;
-  productId: string;
-  imageUrl: string;
-  isThumbnail: boolean;
-}
-
-interface Product {
-  id: string;
-  name: string;
-  slug: string;
-  price: string;
-  isAvailable: boolean;
-  images: ProductImage[];
-  categoryId: string;
-}
+import { Product } from '@/types/product';
+import { getProducts } from '@/services/product';
 
 export default function ProdukPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -30,8 +15,7 @@ export default function ProdukPage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/products');
-        const data = await res.json();
+        const data = await getProducts();
         setProducts(data);
         setFilteredProducts(data);
       } catch (error) {
@@ -50,7 +34,7 @@ export default function ProdukPage() {
     }
 
     if (selectedCategory) {
-      filtered = filtered.filter((p) => p.categoryId === selectedCategory);
+      filtered = filtered.filter((p) => p.category.id === selectedCategory);
     }
 
     setFilteredProducts(filtered);

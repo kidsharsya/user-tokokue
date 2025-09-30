@@ -6,7 +6,7 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 export default function Footer() {
   return (
     <section className="bg-[var(--color-grey)]">
-      <footer className="max-w-6xl mx-auto text-gray-300 py-16 px-6">
+      <footer className="max-w-7xl mx-auto text-gray-300 py-16 px-6">
         <div className="grid md:grid-cols-3 gap-8 md:gap-24 lg:gap-40">
           {/* Brand + Contact */}
           <div>

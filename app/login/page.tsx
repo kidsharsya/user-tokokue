@@ -29,16 +29,8 @@ export default function LoginPage() {
 
   return (
     <section className="min-h-screen flex items-center justify-center">
-      <Image
-        src="/hero-image.jpg" // GANTI DENGAN PATH GAMBAR ANDA
-        alt="Background Toko Kue"
-        layout="fill"
-        objectFit="cover"
-        quality={80} // Opsional: Mengoptimalkan kualitas gambar
-        className="absolute z-0" // Pastikan berada di belakang konten
-      />
+      <Image src="/hero-image.jpg" alt="Background Toko Kue" layout="fill" objectFit="cover" quality={80} className="absolute z-0" />
 
-      {/* 2. Overlay Gelap (Opsional, untuk meningkatkan keterbacaan form) */}
       <div className="absolute inset-0 bg-black/50 z-10"></div>
 
       <div className="relative z-20 bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-8 w-full max-w-md text-center">

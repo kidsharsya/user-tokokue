@@ -1,34 +1,44 @@
+// components/ProductList.tsx
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { CheckCircle, XCircle, ShoppingCart } from 'lucide-react';
-
-interface ProductImage {
-  id: string;
-  productId: string;
-  imageUrl: string;
-  isThumbnail: boolean;
-}
-
-interface Product {
-  id: string;
-  name: string;
-  slug: string; // ✅ tambahkan slug biar bisa ke detail
-  price: string;
-  isAvailable: boolean;
-  images: ProductImage[];
-}
+import { CheckCircle, XCircle, ShoppingCart, Check } from 'lucide-react';
+import { Product } from '@/types/product';
+import { useCart } from '@/contexts/CartContext';
 
 interface ProductListProps {
   products: Product[];
 }
 
 export default function ProductList({ products }: ProductListProps) {
+  const { addToCart, isInCart } = useCart();
+  const [addedItems, setAddedItems] = useState<Set<string>>(new Set());
+
+  const handleAddToCart = (product: Product) => {
+    addToCart(product, 1);
+
+    // Show success feedback
+    setAddedItems((prev) => new Set(prev).add(product.id));
+
+    // Remove success indicator after 2 seconds
+    setTimeout(() => {
+      setAddedItems((prev) => {
+        const newSet = new Set(prev);
+        newSet.delete(product.id);
+        return newSet;
+      });
+    }, 2000);
+  };
+
   return (
     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {products.map((product) => {
         const imageUrl = product.images[0]?.imageUrl ? `http://localhost:5000${product.images[0].imageUrl}` : '/placeholder.png';
+
+        const inCart = isInCart(product.id);
+        const justAdded = addedItems.has(product.id);
 
         return (
           <div key={product.id} className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
@@ -37,6 +47,13 @@ export default function ProductList({ products }: ProductListProps) {
               {/* Gambar Produk */}
               <div className="relative w-full h-56 overflow-hidden">
                 <Image src={imageUrl} alt={product.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
+                {/* Badge if in cart */}
+                {inCart && (
+                  <div className="absolute top-3 right-3 bg-[var(--color-gold)] text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+                    <Check className="w-3 h-3" />
+                    Di Keranjang
+                  </div>
+                )}
               </div>
 
               {/* Detail Produk */}
@@ -55,13 +72,23 @@ export default function ProductList({ products }: ProductListProps) {
             {/* Tombol (tetap di luar Link biar tidak ikut redirect) */}
             <div className="px-5 pb-5">
               <button
+                onClick={() => handleAddToCart(product)}
                 disabled={!product.isAvailable}
                 className={`w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition ${
-                  product.isAvailable ? 'bg-[var(--color-gold)] text-white hover:bg-[var(--color-grey)]' : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  justAdded ? 'bg-green-500 text-white' : product.isAvailable ? 'bg-[var(--color-gold)] text-white hover:bg-[var(--color-grey)]' : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 }`}
               >
-                <ShoppingCart className="w-5 h-5" />
-                Tambah ke Keranjang
+                {justAdded ? (
+                  <>
+                    <Check className="w-5 h-5" />
+                    Ditambahkan!
+                  </>
+                ) : (
+                  <>
+                    <ShoppingCart className="w-5 h-5" />
+                    {inCart ? 'Tambah Lagi' : 'Tambah ke Keranjang'}
+                  </>
+                )}
               </button>
             </div>
           </div>
